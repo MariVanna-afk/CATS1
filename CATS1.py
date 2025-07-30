@@ -28,7 +28,7 @@ def open_new_window():
     if img:
         new_window = Toplevel()
         new_window.title("Cat Image")
-        ew_window.geometry("600x480")
+        new_window.geometry("600x480")
         label = Label(new_window, image=img)
         label.image = img
         label.pack()
