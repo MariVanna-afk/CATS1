@@ -20,3 +20,22 @@ def load_image(url):
     except requests.exceptions.RequestException as e:
         print(f"Ошибка при загрузке изображения: {e}")
         return None
+
+    def open_new_window():
+        tag = tag_combobox.get()
+        url_with_tag = f'https://cataas.com/cat/{tag}' if tag else 'https://cataas.com/cat'
+        img = load_image(url_with_tag)
+        if img:
+            new_window = Toplevel()
+            new_window.title("Cat Image")
+            new_window.geometry("600x480")
+            label = Label(new_window, image=img)
+            label.image = img
+            label.pack()
+
+    window = Tk()
+    window.title("Cats!")
+    window.geometry("600x520")
+
+    menu_bar = Menu(window)
+    window.config(menu=menu_bar)
