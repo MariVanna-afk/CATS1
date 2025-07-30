@@ -21,21 +21,35 @@ def load_image(url):
         print(f"Ошибка при загрузке изображения: {e}")
         return None
 
-    def open_new_window():
-        tag = tag_combobox.get()
-        url_with_tag = f'https://cataas.com/cat/{tag}' if tag else 'https://cataas.com/cat'
-        img = load_image(url_with_tag)
-        if img:
-            new_window = Toplevel()
-            new_window.title("Cat Image")
-            new_window.geometry("600x480")
-            label = Label(new_window, image=img)
-            label.image = img
-            label.pack()
+def open_new_window():
+    tag = tag_combobox.get()
+    url_with_tag = f'https://cataas.com/cat/{tag}' if tag else 'https://cataas.com/cat'
+    img = load_image(url_with_tag)
+    if img:
+        new_window = Toplevel()
+        new_window.title("Cat Image")
+        ew_window.geometry("600x480")
+        label = Label(new_window, image=img)
+        label.image = img
+        label.pack()
 
-    window = Tk()
-    window.title("Cats!")
-    window.geometry("600x520")
+window = Tk()
+window.title("Cats!")
+window.geometry("600x520")
 
-    menu_bar = Menu(window)
-    window.config(menu=menu_bar)
+menu_bar = Menu(window)
+window.config(menu=menu_bar)
+file_menu = Menu(menu_bar, tearoff=0)
+menu_bar.add_cascade(label="Файл", menu=file_menu)
+file_menu.add_command(label="Загрузить фото", command=open_new_window)
+file_menu.add_separator()
+file_menu.add_command(label="Выход", command=window.destroy)
+
+# Метка "Выбери тег"
+tag_label = Label(window, text="Выбери тег")
+tag_label.pack()
+
+tag_combobox = ttk.Combobox(window, values=ALLOWED_TAGS)
+tag_combobox.pack()
+
+window.mainloop()
