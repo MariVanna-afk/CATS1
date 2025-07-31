@@ -33,6 +33,7 @@ def open_new_window():
         label.image = img
         label.pack()
 
+
 window = Tk()
 window.title("Cats!")
 window.geometry("600x520")
