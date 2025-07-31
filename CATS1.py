@@ -15,7 +15,7 @@ def load_image(url):
         response.raise_for_status()
         image_data = BytesIO(response.content)
         img = Image.open(image_data)
-        img.thumbnail((600, 480), Image.Resampling.LANCZOS)
+        img.thumbnail((600, 520), Image.Resampling.LANCZOS)
         return ImageTk.PhotoImage(img)
     except requests.exceptions.RequestException as e:
         print(f"Ошибка при загрузке изображения: {e}")
@@ -45,7 +45,7 @@ file_menu.add_command(label="Загрузить фото", command=open_new_wind
 file_menu.add_separator()
 file_menu.add_command(label="Выход", command=window.destroy)
 
-# Метка "Выбери тег"
+
 tag_label = Label(window, text="Выбери тег")
 tag_label.pack()
 
